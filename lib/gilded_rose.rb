@@ -15,23 +15,12 @@ class GildedRose
       update_backstage(item)
       update_aged_brie(item)
       update_normal_products(item)
-
-      # after SellIn
       if after_sell_in?(item)
-        if item.name != "Aged Brie"
-          if item.name != "Backstage passes to a TAFKAL80ETC concert"
-            if item.quality > 0
-              if item.name != "Sulfuras, Hand of Ragnaros"
-                item.quality = item.quality - 1
-              end
-            end
-          end
-        end
+        update_normal_products(item)
       end
     end
   end
 end
-
 
   private
 
@@ -59,15 +48,16 @@ end
   end
 
   def update_backstage(item)
-    quality_under_50?(item)
-    if backstage_item?(item) && after_sell_in?(item)
-      item.quality = 0
-    elsif backstage_item?(item) && sell_in_5_days_or_less(item)
-      item.quality = item.quality + 3 #3
-    elsif backstage_item?(item) && sell_in_10_days_or_less(item)
-      item.quality = item.quality + 2
+    if backstage_item?(item)
+      if after_sell_in?(item)
+        item.quality = 0
+      elsif sell_in_5_days_or_less(item)
+        item.quality = item.quality + 3 #3
+      elsif sell_in_10_days_or_less(item)
+        item.quality = item.quality + 2
     end
   end
+end
 
   def backstage_item?(item)
     item.name == "Backstage passes to a TAFKAL80ETC concert"
@@ -89,13 +79,9 @@ end
     if !backstage_item?(item) && !aged_brie?(item) && !sulfuras?(item)
       if item.quality > @minimum_quality
         item.quality = item.quality - 1
+      end
+    end
   end
-end
-
-end
-
-
-
 
 
 
