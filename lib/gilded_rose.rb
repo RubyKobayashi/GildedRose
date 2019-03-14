@@ -29,7 +29,7 @@ class GildedRose
           end
         end
       end
-      is_sulfuras(item)
+      sulfuras(item)
       # if item.name != "Sulfuras, Hand of Ragnaros"
       #   item.sell_in = item.sell_in - 1
       # end
@@ -55,7 +55,7 @@ class GildedRose
 
   private
 
-  def is_sulfuras(item)
+  def sulfuras(item) 
       item.name == "Sulfuras, Hand of Ragnaros"
       item.sell_in = item.sell_in - 1
     end
