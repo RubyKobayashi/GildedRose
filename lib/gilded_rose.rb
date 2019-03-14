@@ -48,16 +48,15 @@ end
   end
 
   def update_backstage(item)
-    if backstage_item?(item)
-      if after_sell_in?(item)
+    if backstage_item?(item) && after_sell_in?(item)
         item.quality = 0
-      elsif sell_in_5_days_or_less(item)
-        item.quality = item.quality + 3 #3
-      elsif sell_in_10_days_or_less(item)
+      elsif backstage_item?(item) && sell_in_5_days_or_less(item) && quality_under_50?(item)
+        item.quality = item.quality + 3
+      elsif backstage_item?(item) && sell_in_10_days_or_less(item) && quality_under_50?(item)
         item.quality = item.quality + 2
     end
   end
-end
+
 
   def backstage_item?(item)
     item.name == "Backstage passes to a TAFKAL80ETC concert"

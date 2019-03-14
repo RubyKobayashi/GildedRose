@@ -55,6 +55,14 @@ describe GildedRose do
           end
         end
 
+          context "10 days or less to SellIn date" do
+            it "maximum quality is 50" do
+              items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 10, 50)]
+              GildedRose.new(items).update_quality()
+              expect(items[0].quality).to eq(50)
+            end
+          end
+
         context "5 days or less to SellIn date" do
           it "quality increases by 3" do
             items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 5, 40)]
