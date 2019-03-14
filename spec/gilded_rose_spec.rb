@@ -25,13 +25,6 @@ describe GildedRose do
         expect(items[0].quality).to eq(0)
       end
 
-      context "before SellIn Date" do
-        it "changes the quality by -1" do
-        items = [Item.new("cabbage", 2, 2)]
-        GildedRose.new(items).update_quality()
-        expect(items[0].quality).to eq(1)
-      end
-
       context ".name is 'Brie'" do
         it "quality increases by 1" do
           items = [Item.new("Aged Brie", 2, 40)]
@@ -44,6 +37,13 @@ describe GildedRose do
           GildedRose.new(items).update_quality()
           expect(items[0].quality).to eq(50)
         end
+      end
+
+      context "before SellIn Date" do
+        it "changes the quality by -1" do
+        items = [Item.new("cabbage", 2, 2)]
+        GildedRose.new(items).update_quality()
+        expect(items[0].quality).to eq(1)
       end
 
       context ".name is 'Backstage passes to a TAFKAL80ETC concert'" do
@@ -72,6 +72,12 @@ describe GildedRose do
             GildedRose.new(items).update_quality()
             expect(items[0].quality).to eq(0)
           end
+        end
+
+        it "quality degrades 2x fast" do
+          items = [Item.new("apple", 0, 50)]
+          GildedRose.new(items).update_quality()
+          expect(items[0].quality).to eq(48)
         end
       end
 
