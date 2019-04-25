@@ -39,6 +39,7 @@
 AllCops:
   Exclude:
     - 'lib/**/*'
+    - 'spec/texttest_fixture_spec.rb'
 
 
 Metrics/LineLength:
@@ -51,11 +52,13 @@ Metrics/LineLength:
   Exclude:
     - 'spec/**/*'
     - 'test/**/*'
+    - 'lib/**/*'
 
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
     - 'test/**/*'
+    - 'lib/**/*'
 
 # Code Style
 # ==========
